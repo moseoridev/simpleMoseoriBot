@@ -101,8 +101,8 @@ def get_sch_classinfo(gyc_code, sch_code, grade):
 #     url = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getUltraSrtNcst"
 
 
-# sch = get_sch_info('이의고등학교')['이의고등학교']
+sch = get_sch_info('이의고등학교')['이의고등학교']
 # print(get_sch_meal(sch['gyc_code'], sch['sch_code'], '20210105'))
-# print(get_sch_timetable(sch['gyc_code'],
-#                         sch['sch_code'], '2', '11', '20210107'))
+print(get_sch_timetable(sch['gyc_code'],
+                        sch['sch_code'], '2', '11', '20210308'))
 # print(get_sch_classinfo(sch['gyc_code'], sch['sch_code'], '2'))

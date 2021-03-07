@@ -18,7 +18,10 @@ def send_message():
     sch = get_sch_info('이의고등학교')['이의고등학교']
     today_meal = get_sch_meal(sch['gyc_code'], sch['sch_code'], rdate)
 
-    if today_meal or get_sch_timetable(sch['gyc_code'], sch['sch_code'], '3', '1', rdate):
+    def tt(cn):
+        get_sch_timetable(sch['gyc_code'], sch['sch_code'], '3', cn, rdate)
+        return tt
+    if today_meal or tt('1'):
         params = {
             "username": "모서리봇",
             "avatar_url": "https://www.vmcdn.ca/f/files/via/import/2017/11/23164825_homer-simpson-doughnut.jpg",
@@ -43,12 +46,13 @@ def send_message():
             }
             params['embeds'][0]['fields'].append(nf)
 
-        for cl in get_sch_classinfo(sch['gyc_code'], sch['sch_code'], '3'):
-            np = {
-                "name": f'🧑‍🏫 3학년 {cl}반',
-                'value': ', '.join(get_sch_timetable(sch['gyc_code'], sch['sch_code'], '3', str(cl), rdate))
-            }
-            params['embeds'][0]['fields'].append(np)
+        if tt('1'):
+            for cl in get_sch_classinfo(sch['gyc_code'], sch['sch_code'], '3'):
+                np = {
+                    "name": f'🧑‍🏫 3학년 {cl}반',
+                    'value': ', '.join(tt(str(cl)))
+                }
+                params['embeds'][0]['fields'].append(np)
 
         r = requests.post(
             URL,
