@@ -21,6 +21,8 @@ def send_message():
     def tt(cn):
         get_sch_timetable(sch['gyc_code'], sch['sch_code'], '3', cn, rdate)
         return tt
+
+        
     if today_meal or tt('1'):
         params = {
             "username": "모서리봇",
